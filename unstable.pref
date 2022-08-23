@@ -1,7 +1,11 @@
+# /etc/apt/preferences.d/unstable.pref
+
+# deprioritize unstable depository
 Package: *
 Pin: release a=unstable
 Pin-Priority: 1
 
+# prioritize firefox package from unstable depository
 Package: firefox
 Pin: release a=unstable
 Pin-Priority: 500
