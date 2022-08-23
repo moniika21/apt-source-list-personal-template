@@ -1,0 +1,3 @@
+# /etc/apt/sources.list.d/spotify.list
+
+deb http://repository.spotify.com stable non-free
