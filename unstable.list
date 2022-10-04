@@ -1,0 +1,4 @@
+# /etc/apt/sources.list.d/unstable.list
+
+# Official french debian mirrored repository (unstable branch)
+deb http://deb.debian.org/debian unstable main contrib non-free
