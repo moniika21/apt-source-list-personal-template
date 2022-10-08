@@ -5,3 +5,4 @@ apt install -t bullseye-backports firmware-misc-nonfree
 apt install -t bullseye-backports nvidia-cuda-dev
 apt install -t bullseye-backports nvidia-cuda-toolkit
 apt install htop iftop
+apt install keepassxc
