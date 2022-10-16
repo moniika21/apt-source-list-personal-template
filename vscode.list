@@ -1,2 +1,2 @@
-# vscode.list
+# /etc/apt/sources.list.d/vscode.list
 deb http://packages.microsoft.com/repos/code stable main
