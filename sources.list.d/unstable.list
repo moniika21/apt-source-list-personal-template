@@ -1,4 +1,4 @@
 # /etc/apt/sources.list.d/unstable.list
 
 # Official french repository (standard update source)
-deb http://deb.debian.org/debian unstable main contrib non-free
+deb http://ftp.fr.debian.org/debian/ unstable main contrib non-free
