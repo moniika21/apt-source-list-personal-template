@@ -1,0 +1,6 @@
+# /etc/apt/preferences.d/stable.pref
+
+# Stable repository (high priority)
+Package: *
+Pin: release a=stable
+Pin-Priority: 990

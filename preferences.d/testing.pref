@@ -1,0 +1,6 @@
+# /etc/apt/preferences.d/testing.pref
+
+# Testing repository (medium priority)
+Package: *
+Pin: release a=testing
+Pin-Priority: 500

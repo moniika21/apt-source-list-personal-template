@@ -1,0 +1,6 @@
+# /etc/apt/preferences.d/kali.pref
+
+# Kali repository (very low priority)
+Package: *
+Pin: release a=kali-rolling
+Pin-Priority: 1
