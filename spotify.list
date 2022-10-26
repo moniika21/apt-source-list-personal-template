@@ -1,4 +1,4 @@
 # /etc/apt/sources.list.d/spotify.list
 
-# Official debian repository for Spotify
+# Official spotify repository
 deb http://repository.spotify.com stable non-free
