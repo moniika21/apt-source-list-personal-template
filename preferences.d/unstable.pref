@@ -5,7 +5,7 @@ Package: *
 Pin: release a=unstable
 Pin-Priority: 100
 
-# prioritize firefox package from unstable depository
+# Prioritize firefox package from unstable depository
 #Package: firefox
 #Pin: release a=unstable
 #Pin-Priority: 500

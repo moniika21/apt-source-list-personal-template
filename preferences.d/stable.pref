@@ -4,3 +4,8 @@
 Package: *
 Pin: release a=stable
 Pin-Priority: 990
+
+# Stable security repository (high priority)
+Package: *
+Pin: release a=stable-security
+Pin-Priority: 990

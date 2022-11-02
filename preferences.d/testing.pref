@@ -3,4 +3,4 @@
 # Testing repository (medium priority)
 Package: *
 Pin: release a=testing
-Pin-Priority: 500
+Pin-Priority: 400
