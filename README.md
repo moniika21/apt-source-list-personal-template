@@ -5,9 +5,12 @@
 
 ## Source list
 
-You have to rename the `sources-<branch>.list` to `sources.list` and putting it in the `/etc/apt/` folder
- main contrib non-free
- Official french repository
+You have to rename the `sources-<branch>.list` to `sources.list` and put it in the `/etc/apt/` folder.
+
+For each kind of repository:
+
+- I use the official french [closest mirror server](https://www.debian.org/mirror/list) to download faster.
+- I use all the sections available to have the richest package library ([main contrib non-free](https://wiki.debian.org/SourcesList#Component)).
 
 ### Stable branch or Testing branch
 
@@ -24,28 +27,32 @@ For the testing branch, there is also a `source-testing.list` with the same repo
 > There is some tiny problem with the stable repositories, the codenames doesn't match with the `stable` tag but with the current `debian codename distribution`.
 
 ```bash
-moniika@raspberry:~$ curl -fsSL 'http://ftp.fr.debian.org/debian/dists/stable-backports/Release' | grep -E '^Suite|^Codename'
+$ curl -fsSL 'http://ftp.fr.debian.org/debian/dists/stable-backports/Release' | grep -E '^Suite|^Codename'
 Suite: bullseye-backports
 Codename: bullseye-backports
-moniika@raspberry:~$ curl -fsSL 'http://ftp.fr.debian.org/debian/dists/stable-proposed-updates/Release' | grep -E '^Suite|^Codename'
+$ curl -fsSL 'http://ftp.fr.debian.org/debian/dists/stable-proposed-updates/Release' | grep -E '^Suite|^Codename'
 Suite: proposed-updates
 Codename: bullseye-proposed-updates
-moniika@raspberry:~$ curl -fsSL 'http://ftp.fr.debian.org/debian/dists/stable-updates/Release' | grep -E '^Suite|^Codename' 
-Suite: stable-updates
-Codename: bullseye-updates
 ```
 
 So when you will do `apt update`, you will get some warnings like this:
 
 ```bash
+W: Conflicting distribution: http://ftp.fr.debian.org/debian stable-backports InRelease (expected stable-backports but got bullseye-backports)
+W: Conflicting distribution: http://ftp.fr.debian.org/debian stable-proposed-updates InRelease (expected stable-proposed-updates but got 
+bullseye-proposed-updates)
 ```
 
-To get rid of these warnings juste replace the stable tag before -backports with your current codename distribution.
+These warnings are harmless but quite annoying, to get rid of them juste replace the `stable` tag in `stable-backports` and `stable-proposed-updates` with your current codename distribution.
 
-You can get it with `lsb_release -sc` or cat
-cat /etc/os-release | grep "CODENAME"
+You can get it with `lsb_release -sc` or `cat /etc/os-release | grep -P "(?<=VERSION_CODENAME=).*"`
 
-### Custom
+```bash
+echo $(lsb_release -sc)-proposed-updates
+echo $(lsb_release -sc)-backports
+```
+
+### Custom source lists
 
 There is also some custom source files in `sources.list.d` to have for example the  spotify, vscode or kali-branch packages.
 They aren't default packages and relies on external repositories, so you have to add  for each repository you want to add it's [own gpg key](https://wiki.debian.org/SecureApt#How_to_find_and_add_a_key).
@@ -56,15 +63,47 @@ For `other archives`, there is not yet a standard location where you can find th
 
 There's a rough standard of putting the key up on the web page for the repository or as a file in the repository itself, but no real standard, so you might have to hunt for it.
 
+You can also check on a public key server provider and try to found the desired key by repository name or key ID:
+
+- <https://keys.openpgp.org/>
+- <https://keyserver.ubuntu.com/>
+- <https://keyring.debian.org/>
+
 Be sure to verify the source and the [veracity](https://wiki.debian.org/SecureApt#How_to_tell_if_the_key_is_safe) of the gpg key you want to add.
 
-And after finding this key you must know the kind of gpg key you are dealing with:
+And after finding this key you must know the kind of gpg key you are [dealing with](https://www.linuxuprising.com/2021/01/apt-key-is-deprecated-how-to-add.html).
+Run `file <repo-key>.gpg`, if you get a similar to the following then the key is ascii-armored:
 
-- Armored key
+```bash
+$ file <repo-key>.gpg
+repo-key.gpg: PGP public key block Public-Key (old)
+```
 
-- Non armored key
+For armored key:
 
-And finaly you have to put it in the `/etc/apt/trusted.gpg` [folder](https://wiki.debian.org/SecureApt#Basic_concepts).
+```bash
+gpg --dearmor --export <repo-key>.gpg
+```
+
+For non armored key:
+
+```bash
+gpg --export <repo-key>.gpg
+```
+
+And finaly you have to put it in the `/etc/apt/trusted.gpg.d` [folder](https://wiki.debian.org/SecureApt#Basic_concepts) in a file ending with `.gpg`.
+
+Final command to download the gpg key and put it directly into a custom file (if gpg armored file):
+
+```bash
+curl <https://example.com/key/repo-key.gpg> | gpg --dearmor > /etc/apt/trusted.gpg.d/<desired_repository_name>.gpg
+```
+
+or
+
+```bash
+wget -O- <https://example.com/key/repo-key.gpg> | gpg --dearmor > /etc/apt/trusted.gpg.d/<desired_repository_name>.gpg
+```
 
 To list all gpg keys, type `apt-key list`
 
