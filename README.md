@@ -24,7 +24,7 @@ For the testing branch, there is also a `source-testing.list` with the same repo
 - `Stable-updates` for package changes that cannot wait for the next point release
 
 > **Warning**
-> There is some tiny problem with the stable repositories, the codenames doesn't match with the `stable` tag but with the current `debian codename distribution`.
+> There is some tiny problem with the stable repositories, the codenames doesn't match with the `stable` tag but with the current **debian codename distribution**.
 
 ```bash
 $ curl -fsSL 'http://ftp.fr.debian.org/debian/dists/stable-backports/Release' | grep -E '^Suite|^Codename'
@@ -59,7 +59,7 @@ They aren't default packages and relies on external repositories, so you have to
 
 The `debian-archive-keyring` package is used to distribute keys to apt. Upgrades to this package can add (or remove) gpg keys for the main Debian archive.
 
-For `other archives`, there is not yet a standard location where you can find the key for a given apt repository.
+For **other archives**, there is not yet a standard location where you can find the key for a given apt repository.
 
 There's a rough standard of putting the key up on the web page for the repository or as a file in the repository itself, but no real standard, so you might have to hunt for it.
 
@@ -71,8 +71,8 @@ You can also check on a public key server provider and try to found the desired 
 
 Be sure to verify the source and the [veracity](https://wiki.debian.org/SecureApt#How_to_tell_if_the_key_is_safe) of the gpg key you want to add.
 
-And after finding this key you must know the kind of gpg key you are [dealing with](https://www.linuxuprising.com/2021/01/apt-key-is-deprecated-how-to-add.html).
-Run `file <repo-key>.gpg`, if you get a similar to the following then the key is `ascii-armored`:
+After finding this key you must know the kind of gpg key you are [dealing with](https://www.linuxuprising.com/2021/01/apt-key-is-deprecated-how-to-add.html).
+Run `file <repo-key>.gpg`, if you get a similar to the following then the key is **ascii-armored**:
 
 ```bash
 $ file <repo-key>.gpg
@@ -119,15 +119,15 @@ If two or more versions have the same priority, apt will install the most recent
 
 So for the [moment](https://manpages.debian.org/bullseye/apt/apt_preferences.5.en.html#How_APT_Interprets_Priorities):
 
-- `kali` have a `very low priority` because it is fully optionnal and stand for the kali linux repositories, causes a version to be installed only if there is no installed version of the package,for forcing installation by this repository use the `-t` flag with apt.  
+- `kali` have a **very low priority** because it is fully optionnal and stand for the kali linux repositories, causes a version to be installed only if there is no installed version of the package,for forcing installation by this repository use the `-t` flag with apt.  
 <https://wiki.debian.org/AptConfiguration#Force_installation_of_a_package_from_a_repository>
 <https://manpages.debian.org/bullseye/apt/apt_preferences.5.en.html#APT's_Default_Priority_Assignments>
 
-- `unstable` have a `low priority`, causes a version to be installed unless there is a version available belonging to some other distribution or the installed version is more recent.
+- `unstable` have a **low priority**, causes a version to be installed unless there is a version available belonging to some other distribution or the installed version is more recent.
 
-- `testing` have a **medium priority**, it behave like `unstable`, it will never outrun `stable` unless there is no stable branch in the `sources.list` or **source.list.d**.
+- `testing` have a **medium priority**, it behave like `unstable`, it will never outrun `stable` unless there is no **stable** branch in the `sources.list` or `source.list.d`.
 
-- **stable** have a **high priority**, causes a version to be installed even if it does not come from the target release, unless the installed version is more recent.
+- `stable` have a **high priority**, causes a version to be installed even if it does not come from the target release, unless the installed version is more recent.
   
 ## Installation of softwares
 
