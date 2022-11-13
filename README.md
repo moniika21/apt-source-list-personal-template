@@ -26,6 +26,8 @@ For the testing branch, there is also a `source-testing.list` with the same repo
 > **Warning**
 > There is some tiny problem with the stable repositories, the codenames doesn't match with the `stable` tag but with the current **debian codename distribution**.
 
+For querying debian repository to see stable backport codename (only tagged for current codename, not stable):
+
 ```bash
 $ curl -fsSL 'http://ftp.fr.debian.org/debian/dists/stable-backports/Release' | grep -E '^Suite|^Codename'
 Suite: bullseye-backports
@@ -131,4 +133,31 @@ So for the [moment](https://manpages.debian.org/bullseye/apt/apt_preferences.5.e
   
 ## Installation of softwares
 
-In `installation-softwares.sh`, there is a bunch of usefull software to install if for exmpale you have a nvidia card and want the latest drivers according to a newer debian branch [stable-backports](https://wiki.debian.org/Backports).
+There is a bunch of usefull software to install depending on your needs.
+
+For example you have a nvidia card and want the latest stable drivers according to a newer debian branch [stable-backports](https://wiki.debian.org/Backports):
+
+```bash
+apt install nvidia-driver
+apt install -t stable-backports nvidia-cuda-dev
+apt install -t stable-backports nvidia-cuda-toolkit
+```
+
+For statistics about perforances or network:
+
+```bash
+apt install htop iftop
+```
+
+For more recent linux kernel images:
+
+```bash
+apt install -t stable-backports linux-image-amd64
+apt install -t stable-backports linux-headers-amd64
+```
+
+For more recent non open source binary firmwares (for various drivers):
+
+```bash
+apt install -t stable-backports firmware-misc-nonfree
+```
