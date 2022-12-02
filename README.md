@@ -98,13 +98,13 @@ And finaly you have to put it in the `/etc/apt/trusted.gpg.d` [folder](https://w
 Final command to download the gpg key and put it directly into a custom file (if gpg armored file):
 
 ```bash
-curl <https://example.com/key/repo-key.gpg> | gpg --dearmor > /etc/apt/trusted.gpg.d/<desired_repository_name>.gpg
+curl <https://example.com/key/repo-key.gpg> | gpg --dearmor > /etc/apt/trusted.gpg.d/<repository_name>.gpg
 ```
 
 or
 
 ```bash
-wget -O- <https://example.com/key/repo-key.gpg> | gpg --dearmor > /etc/apt/trusted.gpg.d/<desired_repository_name>.gpg
+wget -O- <https://example.com/key/repo-key.gpg> | gpg --dearmor > /etc/apt/trusted.gpg.d/<repository_name>.gpg
 ```
 
 To list all gpg keys, type `apt-key list`
