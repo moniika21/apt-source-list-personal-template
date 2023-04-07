@@ -7,10 +7,10 @@ deb http://ftp.fr.debian.org/debian/ stable main contrib non-free
 deb http://security.debian.org/debian-security stable-security main contrib non-free
 
 # Official french repository (for more recent versions of some packages)
-deb http://ftp.fr.debian.org/debian/ stable-backports main contrib non-free
+deb http://ftp.fr.debian.org/debian/ bullseye-backports main contrib non-free
 
 # Official french repository (for upcoming point releases)
-deb http://ftp.fr.debian.org/debian/ stable-proposed-updates main contrib non-free
+deb http://ftp.fr.debian.org/debian/ bullseye-proposed-updates main contrib non-free
 
 # Official french repository (for changes that cannot wait for the next point release)
 deb http://ftp.fr.debian.org/debian/ stable-updates main contrib non-free
