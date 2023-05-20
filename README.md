@@ -161,3 +161,13 @@ For more recent non open source binary firmwares (for various drivers):
 ```bash
 apt install -t stable-backports firmware-misc-nonfree
 ```
+
+## Hold back a package version
+
+> <https://manpages.ubuntu.com/manpages/bionic/man8/apt-mark.8.html>
+
+```sh
+sudo apt-mark hold <package_name>
+```
+
+`hold` is used to mark a package as held back, which will prevent the package from being automatically installed, upgraded or removed.
